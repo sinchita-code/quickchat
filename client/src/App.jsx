@@ -11,6 +11,9 @@ import { Toaster } from "react-hot-toast";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { SocketProvider } from "../context/SocketContext.jsx";
 
+// Assets
+import assets from "./assets/assets";
+
 // Pages
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -20,9 +23,18 @@ const App = () => {
   const { authUser } = useContext(AuthContext);
 
   return (
-    <div className="bg-[url('./src/assets/image.jpg')] bg-contain min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      {/* ✅ Background Image */}
+      <img
+        src={assets.bgImage}
+        alt="Background"
+        className="absolute inset-0 w-full h-full object-cover -z-10"
+      />
+
+      {/* Toast */}
       <Toaster position="top-right" />
 
+      {/* App Content */}
       <SocketProvider>
         <Routes>
           {/* Home / Chat */}
@@ -43,7 +55,7 @@ const App = () => {
             element={authUser ? <ProfilePage /> : <Navigate to="/login" replace />}
           />
 
-          {/* Catch-all (optional but recommended) */}
+          {/* Catch-all */}
           <Route
             path="*"
             element={<Navigate to={authUser ? "/" : "/login"} replace />}
