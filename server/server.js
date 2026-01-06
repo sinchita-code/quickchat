@@ -14,7 +14,7 @@ const server = http.createServer(app);
 // ✅ CORS CONFIG
 // -----------------------
 const corsOptions = {
-  origin: ["https://quickchat-server-755p.onrender.com"],
+  origin: ["https://quickchat-client3.onrender.com"],
   credentials: true,
   methods: ["GET", "POST"],
 };
@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 // -----------------------
 export const io = new Server(server, {
   cors: {
-    origin: ["https://quickchat-server-755p.onrender.com"],
+    origin: ["https://quickchat-client3.onrender.com"],
     credentials: true,
     methods: ["GET", "POST"],
   },
